@@ -73,29 +73,29 @@ export function analyzeRedditPosts(posts) {
 
   // Determine overall vibe classification
   let overallVibe = 'Balanced / Neutral';
-  let vibeColor = 'text-slate-400';
-  let vibeBg = 'bg-slate-500/10 border-slate-500/20';
+  let vibeColor = 'text-slate-600';
+  let vibeBg = 'bg-slate-50 border-slate-200';
   let vibeIcon = 'neutral';
 
   if (averageScore > 0.8) {
     overallVibe = 'Extremely Positive & Joyful';
-    vibeColor = 'text-emerald-400';
-    vibeBg = 'bg-emerald-500/10 border-emerald-500/20';
+    vibeColor = 'text-emerald-700';
+    vibeBg = 'bg-emerald-50 border-emerald-150';
     vibeIcon = 'laughing';
   } else if (averageScore > 0.15) {
     overallVibe = 'Optimistic / Positive';
-    vibeColor = 'text-green-400';
-    vibeBg = 'bg-green-500/10 border-green-500/20';
+    vibeColor = 'text-green-750';
+    vibeBg = 'bg-green-50 border-green-150';
     vibeIcon = 'smile';
   } else if (averageScore < -0.8) {
     overallVibe = 'Highly Hostile & Negative';
-    vibeColor = 'text-red-400';
-    vibeBg = 'bg-red-500/10 border-red-500/20';
+    vibeColor = 'text-red-700';
+    vibeBg = 'bg-red-50 border-red-150';
     vibeIcon = 'angry';
   } else if (averageScore < -0.15) {
     overallVibe = 'Critical / Skeptical';
-    vibeColor = 'text-rose-400';
-    vibeBg = 'bg-rose-500/10 border-rose-500/20';
+    vibeColor = 'text-rose-700';
+    vibeBg = 'bg-rose-50 border-rose-150';
     vibeIcon = 'frown';
   }
 

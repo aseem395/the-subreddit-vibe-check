@@ -19,16 +19,16 @@ export default function SentimentCharts({ stats }) {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-slate-950/90 backdrop-blur-md border border-slate-800 p-3.5 rounded-2xl shadow-xl text-xs space-y-1 text-left">
+        <div className="bg-white/95 backdrop-blur-md border border-slate-150 p-3.5 rounded-2xl shadow-lg text-xs space-y-1 text-left">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full" style={{ backgroundColor: data.color }} />
-            <p className="font-bold text-slate-200">{data.name}</p>
+            <p className="font-bold text-slate-900">{data.name}</p>
           </div>
-          <p className="text-slate-400 mt-1 pl-4">
-            Count: <span className="font-semibold text-slate-200">{data.value}</span>
+          <p className="text-slate-550 mt-1 pl-4">
+            Count: <span className="font-semibold text-slate-800">{data.value}</span>
           </p>
-          <p className="text-slate-400 pl-4">
-            Share: <span className="font-semibold text-slate-200">{data.percentage}%</span>
+          <p className="text-slate-550 pl-4">
+            Share: <span className="font-semibold text-slate-800">{data.percentage}%</span>
           </p>
         </div>
       );
@@ -44,10 +44,10 @@ export default function SentimentCharts({ stats }) {
           const item = data.find(d => d.name === entry.value);
           if (!item) return null;
           return (
-            <li key={`legend-${index}`} className="flex items-center gap-2 text-xs md:text-sm font-medium text-slate-300">
+            <li key={`legend-${index}`} className="flex items-center gap-2 text-xs md:text-sm font-medium text-slate-650">
               <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
               <span>{entry.value}</span>
-              <span className="text-slate-500 font-normal">({item.value})</span>
+              <span className="text-slate-400 font-normal">({item.value})</span>
             </li>
           );
         })}
@@ -59,14 +59,14 @@ export default function SentimentCharts({ stats }) {
     <div className="glass-panel rounded-3xl p-6 flex flex-col items-center justify-center w-full min-h-[350px] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-28 h-28 bg-gradient-to-br from-indigo-500/5 to-transparent blur-2xl rounded-full" />
       
-      <div className="w-full flex items-center justify-between mb-4 border-b border-slate-900/60 pb-3">
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-400">
+      <div className="w-full flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500">
           Sentiment Distribution Visualizer
         </h3>
       </div>
 
       {data.length === 0 ? (
-        <div className="flex items-center justify-center h-64 text-sm text-slate-500 font-medium">
+        <div className="flex items-center justify-center h-64 text-sm text-slate-400 font-medium">
           No sentiment data to visualize.
         </div>
       ) : (
@@ -86,7 +86,7 @@ export default function SentimentCharts({ stats }) {
                   <Cell 
                     key={`cell-${index}`} 
                     fill={entry.color} 
-                    stroke="rgba(15, 23, 42, 0.4)" 
+                    stroke="#ffffff" 
                     strokeWidth={2}
                     className="focus:outline-none transition-all duration-300 hover:opacity-90"
                   />
@@ -99,10 +99,10 @@ export default function SentimentCharts({ stats }) {
 
           {/* Absolute Center Circle Label */}
           <div className="absolute top-[48%] -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none">
-            <span className="text-3xl font-extrabold text-slate-100 font-display">
+            <span className="text-3xl font-extrabold text-slate-850 font-display">
               {stats.totalCount}
             </span>
-            <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+            <span className="text-[10px] text-slate-450 font-bold uppercase tracking-wider">
               Posts
             </span>
           </div>

@@ -40,11 +40,11 @@ export default function PostsFeed({ posts }) {
   const getSentimentPillClass = (type) => {
     switch (type) {
       case 'positive':
-        return 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400';
+        return 'bg-emerald-50 border-emerald-250/50 text-emerald-700';
       case 'negative':
-        return 'bg-red-500/10 border-red-500/25 text-red-400';
+        return 'bg-red-50 border-red-250/50 text-red-700';
       default:
-        return 'bg-slate-800/60 border-slate-700/50 text-slate-400';
+        return 'bg-slate-50 border-slate-200 text-slate-550';
     }
   };
 
@@ -64,11 +64,11 @@ export default function PostsFeed({ posts }) {
   return (
     <div className="glass-panel rounded-3xl p-6 w-full flex flex-col max-w-7xl mx-auto h-[680px]">
       {/* Header and Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900/60 pb-5 mb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-5 mb-5">
         <div>
-          <h3 className="text-base font-bold text-slate-200 font-display flex items-center gap-2">
+          <h3 className="text-base font-bold text-slate-800 font-display flex items-center gap-2">
             Analyzed Posts Feed 
-            <span className="text-xs bg-slate-900 px-2.5 py-1 rounded-full text-indigo-400 font-semibold border border-slate-800/80">
+            <span className="text-xs bg-slate-50 px-2.5 py-1 rounded-full text-indigo-650 font-semibold border border-slate-200/50">
               {filteredAndSortedPosts.length} matches
             </span>
           </h3>
@@ -80,28 +80,28 @@ export default function PostsFeed({ posts }) {
         <div className="flex flex-col sm:flex-row gap-3">
           {/* Live Search */}
           <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               placeholder="Filter by title/author..."
               value={filterText}
               onChange={(e) => setFilterText(e.target.value)}
-              className="bg-slate-950/80 border border-slate-850 text-slate-200 placeholder-slate-650 text-xs rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-indigo-500/50 w-full sm:w-56 transition-colors"
+              className="bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 text-xs rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-indigo-500 w-full sm:w-56 transition-colors"
             />
           </div>
 
           {/* Sort Menu */}
-          <div className="relative flex items-center bg-slate-950/80 border border-slate-850 rounded-xl px-3.5 py-2.5">
-            <SlidersHorizontal className="w-3.5 h-3.5 text-slate-500 mr-2" />
+          <div className="relative flex items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-slate-450 mr-2" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-transparent text-slate-350 text-xs focus:outline-none cursor-pointer pr-1"
+              className="bg-transparent text-slate-700 text-xs focus:outline-none cursor-pointer pr-1"
             >
-              <option value="default" className="bg-slate-950 text-slate-300">Default (Hot)</option>
-              <option value="upvotes" className="bg-slate-950 text-slate-300">Most Upvotes</option>
-              <option value="sentiment-desc" className="bg-slate-950 text-slate-300">Highest Vibe</option>
-              <option value="sentiment-asc" className="bg-slate-950 text-slate-300">Lowest Vibe</option>
+              <option value="default" className="bg-white text-slate-700">Default (Hot)</option>
+              <option value="upvotes" className="bg-white text-slate-700">Most Upvotes</option>
+              <option value="sentiment-desc" className="bg-white text-slate-700">Highest Vibe</option>
+              <option value="sentiment-asc" className="bg-white text-slate-700">Lowest Vibe</option>
             </select>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function PostsFeed({ posts }) {
             <p className="text-sm font-medium">No threads match your query.</p>
             <button 
               onClick={() => setFilterText('')}
-              className="text-xs text-indigo-400 hover:text-indigo-300 underline cursor-pointer"
+              className="text-xs text-indigo-650 hover:text-indigo-550 underline cursor-pointer"
             >
               Clear filter
             </button>
@@ -129,13 +129,13 @@ export default function PostsFeed({ posts }) {
             return (
               <div 
                 key={post.id}
-                className="bg-slate-900/30 border border-slate-900 hover:border-slate-800 p-4 rounded-2xl flex gap-4 transition-all hover:bg-slate-900/40 relative group"
+                className="bg-slate-50/30 border border-slate-150/65 hover:border-indigo-150 hover:bg-slate-50/70 p-4 rounded-2xl flex gap-4 transition-all relative group shadow-sm shadow-slate-100/10"
               >
                 {/* Sentiment Score Left Badging Indicator Bar */}
                 <div 
                   className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl transition-colors ${
                     post.sentimentType === 'positive' ? 'bg-emerald-500' :
-                    post.sentimentType === 'negative' ? 'bg-red-500' : 'bg-slate-800'
+                    post.sentimentType === 'negative' ? 'bg-red-500' : 'bg-slate-300'
                   }`} 
                 />
 
@@ -146,7 +146,7 @@ export default function PostsFeed({ posts }) {
                       href={post.url} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="font-medium text-sm md:text-base text-slate-200 hover:text-indigo-350 transition-colors line-clamp-2 leading-relaxed flex items-center gap-1.5 cursor-pointer font-sans"
+                      className="font-semibold text-sm md:text-base text-slate-800 hover:text-indigo-600 transition-colors line-clamp-2 leading-relaxed flex items-center gap-1.5 cursor-pointer font-sans"
                     >
                       {post.title}
                       <ExternalLink className="w-3.5 h-3.5 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-slate-400" />
@@ -161,29 +161,29 @@ export default function PostsFeed({ posts }) {
                   {/* Metadata & Stats Row */}
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500 font-medium">
                     <span>
-                      by <span className="text-slate-400">u/{post.author}</span>
+                      by <span className="text-slate-600 font-semibold">u/{post.author}</span>
                     </span>
                     <span className="flex items-center gap-1">
-                      <ArrowUp className="w-3.5 h-3.5 text-orange-500" />
-                      <span className="text-slate-400">{formatKarma(post.score)}</span>
+                      <ArrowUp className="w-3.5 h-3.5 text-orange-550" />
+                      <span className="text-slate-650">{formatKarma(post.score)}</span>
                     </span>
                     <span className="flex items-center gap-1">
-                      <MessageSquare className="w-3.5 h-3.5 text-indigo-400" />
-                      <span className="text-slate-400">{post.numComments} comments</span>
+                      <MessageSquare className="w-3.5 h-3.5 text-indigo-500" />
+                      <span className="text-slate-655">{post.numComments} comments</span>
                     </span>
                   </div>
 
                   {/* Lexicon Keyword Matches */}
                   {hasMatches && (
-                    <div className="flex flex-wrap items-center gap-2 pt-2 text-[11px] border-t border-slate-900/30">
-                      <span className="text-[10px] text-slate-500 font-semibold uppercase flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-indigo-400" />
+                    <div className="flex flex-wrap items-center gap-2 pt-2 text-[11px] border-t border-slate-150/60">
+                      <span className="text-[10px] text-slate-450 font-semibold uppercase flex items-center gap-1">
+                        <Sparkles className="w-3 h-3 text-indigo-650" />
                         Matches:
                       </span>
                       {positiveWords.map((word, wIdx) => (
                         <span 
                           key={`pos-${wIdx}`} 
-                          className="bg-emerald-500/5 text-emerald-400 border border-emerald-500/10 px-2 py-0.5 rounded-md font-medium"
+                          className="bg-emerald-50 text-emerald-700 border border-emerald-150 px-2 py-0.5 rounded-md font-semibold"
                         >
                           {word} (+val)
                         </span>
@@ -191,7 +191,7 @@ export default function PostsFeed({ posts }) {
                       {negativeWords.map((word, wIdx) => (
                         <span 
                           key={`neg-${wIdx}`} 
-                          className="bg-red-500/5 text-red-400 border border-red-500/10 px-2 py-0.5 rounded-md font-medium"
+                          className="bg-red-50 text-red-700 border border-red-150 px-2 py-0.5 rounded-md font-semibold"
                         >
                           {word} (-val)
                         </span>
